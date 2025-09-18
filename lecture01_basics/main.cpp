@@ -1,6 +1,50 @@
 #include <iostream>
 
+// комментирование
+
+/*
+Тоже 
+Комментирование
+*/
+
+
+// int main() {
+//     std::cout << "Hello world!" << std::endl;
+
+//     return 0;
+// }
+
 int main() {
-    std::cout <<  "Hello World!" << std::endl;
+    // Типы данных 
+    // Целочисленные:
+    char c1; // 1 байт, 256 значений, -128...127
+    unsigned char c2; // 1 байт, 256 значений, 0...256
+    short s1; // 2 байта, 65536 значений, -32768...37767
+    unsigned short s2; // 2 байта, 65536 значений, 0...65535
+    int i1; // 4 байта, 4.147 млрд., -2^31...2^31 - 1
+    unsigned int i2; // 4 байта,  4.147 млрд., 0...2^32 - 1
+    long long lli; // 8 байт
+    unsigned long long ull2; // 8 байт
+
+    // Символьные:
+    char c3 = 'a';
+
+    // Вещественные:
+    float f = 3.23452; // 4 байта, 6-7 значащих чисел
+    double d = 3.1234234234; // 8 байт, 15-16 значащих цифр
+
+    float f1 = 10; // Целые числа можно записать в вещественный тип данных, а наоборот нельзя
+
+    // Логический тип данных
+    bool b = true; // false(0)
+
+    // Стили кодирования
+    int sumOfDigits; // lower camel case
+    int SumOfDigits; // upper camel case
+    int sum_of_digits; // snake case
+
+
+
+
     return 0;
 }
