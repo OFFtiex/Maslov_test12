@@ -13,19 +13,29 @@ int main() {
 
     setlocale(LC_ALL, "Russian");
 
-
     // Задание 1 
-
+    std::cout << "Task 1 " << std::endl;
     short A;
     std::cout << "Enter A " << std::endl;
     std::cin >> A;
-    unsigned short i;
+    int i;
     std::cout << "Enter the number of the i bit" << std::endl;
     std::cin >> i;
-    if (i == 1) {
+    int bitA = (A >> i) & 1;
+    std::cout << std::bitset<8>(A) << std::endl;
+    std::cout << std::bitset<8>(bitA) << std::endl;
+
+    if (bitA != 0) {
+        std::cout << std::bitset<8>(A) << std::endl;
+        i = 1 << i;
+        std::cout << std::bitset<8>(i) << std::endl;
+
         std::cout << A << " = " <<  std::bitset<8>(A) << std::endl;
+        std::cout << A << ">>1 = " << std::bitset<8>(A >> 1) << std::endl;
+        std::cout << A << ">>2 = " << std::bitset<8>(A >> 2) << std::endl;
         std::cout << A << ">>3 = " << std::bitset<8>(A >> 3) << std::endl;
     }
+
     else {
         int M;
         std::cout << "Enter M " << std::endl;
@@ -34,15 +44,16 @@ int main() {
             std::cout << "M больше 5 на " << (M - 5) << std::endl;
         }
         else if (M == 5) {
-            std::cout << "M равен 5" << std::endl;
+            std::cout << "M = 5" << std::endl;
         }
         else {
-            std::cout << "M меньше 5 на " << (abs(M) - 5) << std::endl;
+            std::cout << "M меньше 5 на " << (5 - M) << std::endl;
         }
     }
   
     // Задание 2
 
+    std::cout << "Task 2 " << std::endl;
     short dayNumber;
     std::cout << "Enter the day number " << std::endl;
     std::cin >> dayNumber;
@@ -54,12 +65,10 @@ int main() {
     case 5:std::cout << "Friday"; break;
     case 6:std::cout << "Saturday"; break;
     case 7:std::cout << "Sunday"; break;
-
-
     default:std::cout << "Unknown number"; break; 
     }
     
-   
+
     return 0;
 }
 
