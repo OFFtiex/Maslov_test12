@@ -42,7 +42,7 @@ int main() {
             std::cout << "M = 5" << std::endl;
         }
         else {
-            std::cout << "M is less than 5 " << (5 - M) << std::endl;
+            std::cout << "M is less than 5 by " << (5 - M) << std::endl;
         }
     }
   
