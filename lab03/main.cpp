@@ -12,12 +12,12 @@ int main() {
     int minNumCnt = 0;
     int product = 1;
     int min = 100'000'000;
-    while (n > 0) {
+    for(n; n > 0; --n){
         ++numCnt;
         std::cout << "Enter the "  << numCnt << " number" << std::endl;
         int num;
         std::cin >> num;
-        --n;
+        //--n;
         if (num % 10 == 3) {
             product =  product * num ;
             if (num < min) {
@@ -54,8 +54,9 @@ int main() {
     }
     std::cout << "The sum of the figits of the number = " << sum << std::endl;
     std::cout << "The end" << std::endl;
-
     
+
+   
 
     return 0;
 }
