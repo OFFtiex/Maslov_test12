@@ -23,13 +23,8 @@ int main() {
     std::cin >> i;
     int bitA = (A >> i) & 1;
     std::cout << std::bitset<8>(A) << std::endl;
-    std::cout << std::bitset<8>(bitA) << std::endl;
 
     if (bitA != 0) {
-        std::cout << std::bitset<8>(A) << std::endl;
-        i = 1 << i;
-        std::cout << std::bitset<8>(i) << std::endl;
-
         std::cout << A << " = " <<  std::bitset<8>(A) << std::endl;
         std::cout << A << ">>1 = " << std::bitset<8>(A >> 1) << std::endl;
         std::cout << A << ">>2 = " << std::bitset<8>(A >> 2) << std::endl;
@@ -41,13 +36,13 @@ int main() {
         std::cout << "Enter M " << std::endl;
         std::cin >> M;
         if (M > 5) {
-            std::cout << "M больше 5 на " << (M - 5) << std::endl;
+            std::cout << "M is greater than 5 by " << (M - 5) << std::endl;
         }
         else if (M == 5) {
             std::cout << "M = 5" << std::endl;
         }
         else {
-            std::cout << "M меньше 5 на " << (5 - M) << std::endl;
+            std::cout << "M is less than 5 " << (5 - M) << std::endl;
         }
     }
   
