@@ -2,7 +2,7 @@
 #include <vector>
 
 
-int functionForTwoNumbers(int n1, int n2) {
+int secondaryFunction(int n1, int n2) {
     std::cout << "The function of summing two numbers" << std::endl;
     int sum = 0;
     while (n1 > 0) {
@@ -17,9 +17,9 @@ int functionForTwoNumbers(int n1, int n2) {
 }
 
 
-int functionForThreeNumbers(int a, int b, int c) {
+int secondaryFunction(int n1, int n2, int n3) {
     std::cout << "The function of maximum numbers and 25" << std::endl;
-    int max_value = std::max({ a, b, c });
+    int max_value = std::max({ n1, n2, n3 });
     return std::max(max_value, 25);
 }
 
@@ -37,10 +37,10 @@ int mainFunction(int num1, int num2, int num3) {
     }
 
     if (nonZeroNumbers.size() == 2) {
-        return functionForTwoNumbers(nonZeroNumbers[0], nonZeroNumbers[1]);
+        return secondaryFunction(nonZeroNumbers[0], nonZeroNumbers[1]);
     }
     if (nonZeroNumbers.size() == 3) {
-        return functionForThreeNumbers(nonZeroNumbers[0], nonZeroNumbers[1], nonZeroNumbers[2]);
+        return secondaryFunction(nonZeroNumbers[0], nonZeroNumbers[1], nonZeroNumbers[2]);
     }
     if (nonZeroNumbers.size() < 2) {
         std::cout << "Incorrect number input" << std::endl;
@@ -57,7 +57,7 @@ void task1() {
 }
 void task2(unsigned short  height, unsigned short base1, unsigned short base2) {
 
-    float square = (base1 + base2) * height / 2.0; 
+    float square = (base1 + base2) * height / 2.0;
     std::cout << "The square of the trapezoid (float):" << std::endl << square << std::endl;
     std::cout << "unsigned short: занимает " << sizeof(unsigned short) * 8 << " бит, мин значение = " << "0" << " макс значение = " << pow(2, 16) - 1 << std::endl;
     std::cout << "float: занимает " << sizeof(float) * 8 << " бит, мин значение = " << std::numeric_limits<float>::lowest() << " макс значение = " << std::numeric_limits<float>::max() << std::endl;
