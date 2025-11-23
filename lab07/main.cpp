@@ -10,28 +10,15 @@ using Array = std::array<int, 10>;
 
 void sort1(Array arr) {
 	std::sort(arr.begin(), arr.end());
-	std::cout << "Addres in the function: " << &arr << std::endl;
-	for (int i = 0; i < arr.size(); i++) {
-		std::cout << arr[i] << " ";
-	}
-	std::cout << std::endl;
+	//std::cout << "Addres in the function: " << &arr << std::endl;
 }
 void sort2(Array& arr) {
 	std::sort(arr.begin(), arr.end());
-	std::cout << "Addres in the function: " << &arr << std::endl;
-	for (int i = 0; i < arr.size(); i++) {
-		std::cout << arr[i] << " ";
-	}
-	std::cout << std::endl;
+	//std::cout << "Addres in the function: " << &arr << std::endl;
 }
 void sort3(Array* arr) {
 	std::sort((*arr).begin(), (*arr).end());
-	std::cout << "Addres in the function: " << arr << std::endl;
-	std::cout << "Sorted array by pointer:" << std::endl;
-	for (int i = 0; i < (*arr).size(); i++) {
-		std::cout << (*arr)[i] << " ";
-	}
-	std::cout << std::endl;
+	//std::cout << "Addres in the function: " << arr << std::endl;
 }
 
 
@@ -142,16 +129,54 @@ int main() {
 
 	// Пункт 2
 
-	Array arr;
+	Array arr = { 0, 3, 5, 9, 4, 1, 6, 8, 7, 2 };
 
-	std::cout << "Enter array [-10,10]: " << std::endl;
-	for (int i = 0; i < arr.size(); i++) {
-		std::cin >> arr[i];
+	std::cout << "Array:" << std::endl;
+	for (int i = 0; i < 10; i++) {
+		std::cout << arr[i] << " ";
 	}
+	std::cout << std::endl;
+
 	
 	sort1(arr);
+	std::cout << "Sorted Array by value(-):" << std::endl;
+	for (int i = 0; i < 10; i++) {
+		std::cout << arr[i] << " ";
+	}
+	std::cout << std::endl;
+
+	arr = { 0, 3, 5, 9, 4, 1, 6, 8, 7, 2 };
+
+	std::cout << "Array:" << std::endl;
+	for (int i = 0; i < 10; i++) {
+		std::cout << arr[i] << " ";
+	}
+	std::cout << std::endl;
+
+
 	sort2(arr);
+	std::cout << "Sorted Array by link(+):" << std::endl;
+	for (int i = 0; i < 10; i++) {
+		std::cout << arr[i] << " ";
+	}
+	std::cout << std::endl;
+
+	arr = { 0, 3, 5, 9, 4, 1, 6, 8, 7, 2 };
+
+	std::cout << "Array:" << std::endl;
+	for (int i = 0; i < 10; i++) {
+		std::cout << arr[i] << " ";
+	}
+	std::cout << std::endl;
+
+
 	sort3(&arr);
+	std::cout << "Sorted Array by pointer(+):" << std::endl;
+	for (int i = 0; i < 10; i++) {
+		std::cout << arr[i] << " ";
+	}
+	std::cout << std::endl;
+
 
 
 	return 0;
