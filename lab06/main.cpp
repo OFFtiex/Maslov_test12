@@ -128,8 +128,7 @@ int main() {
     int zeroCount;
     int* zeroRows = findZeroRows(mat, nr, nc, &zeroCount);
 
-
-        deleteZeroRows(mat, nr, nc, zeroRows, zeroCount);
+    deleteZeroRows(mat, nr, nc, zeroRows, zeroCount);
 
     std::cout << "Matrix after removing zero rows:" << std::endl;
     for (int i = 0; i < nr; i++) {
