@@ -9,15 +9,33 @@ using Array = std::array<int, 10>;
 // Пункт 1 
 
 void sort1(Array arr) {
-	std::sort(arr.begin(), arr.end());
+	int n = 10;
+	 for(int i = 0; i < n-1; i++)
+		 for(int j = i+1; j < n; j++)
+			 if (arr[i] < arr[j]) {
+				 std::swap(arr[i], arr[j]);
+			 }
+	//std::sort(arr.begin(), arr.end());
 	//std::cout << "Addres in the function: " << &arr << std::endl;
 }
 void sort2(Array& arr) {
-	std::sort(arr.begin(), arr.end());
+	int n = 10;
+	for (int i = 0; i < n - 1; i++)
+		for (int j = i + 1; j < n; j++)
+			if (arr[i] < arr[j]) {
+				std::swap(arr[i], arr[j]);
+			}
+	//std::sort(arr.begin(), arr.end());
 	//std::cout << "Addres in the function: " << &arr << std::endl;
 }
 void sort3(Array* arr) {
-	std::sort((*arr).begin(), (*arr).end());
+	int n = 10;
+	for (int i = 0; i < n - 1; i++)
+		for (int j = i + 1; j < n; j++)
+			if ((*arr)[i] > (*arr)[j]) {
+				std::swap((*arr)[i], (*arr)[j]);
+			}
+	/*std::sort((*arr).begin(), (*arr).end()); */
 	//std::cout << "Addres in the function: " << arr << std::endl;
 }
 
@@ -137,7 +155,7 @@ int main() {
 	}
 	std::cout << std::endl;
 
-	
+
 	sort1(arr);
 	std::cout << "Sorted Array by value(-):" << std::endl;
 	for (int i = 0; i < 10; i++) {
