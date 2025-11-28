@@ -12,7 +12,7 @@ void sort1(Array arr) {
 	int n = 10;
 	 for(int i = 0; i < n-1; i++)
 		 for(int j = i+1; j < n; j++)
-			 if (arr[i] < arr[j]) {
+			 if (arr[i] > arr[j]) {
 				 std::swap(arr[i], arr[j]);
 			 }
 	//std::sort(arr.begin(), arr.end());
@@ -22,7 +22,7 @@ void sort2(Array& arr) {
 	int n = 10;
 	for (int i = 0; i < n - 1; i++)
 		for (int j = i + 1; j < n; j++)
-			if (arr[i] < arr[j]) {
+			if (arr[i] > arr[j]) {
 				std::swap(arr[i], arr[j]);
 			}
 	//std::sort(arr.begin(), arr.end());
