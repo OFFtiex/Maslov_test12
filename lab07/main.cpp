@@ -58,12 +58,14 @@ void second(Vector& vec) {
 	int x;
 	std::cout << "Enter the element of vector: " << std::endl;
 	std::cin >> x;
+	vec.reserve(vec.size()+1);
 	vec.insert(vec.begin(), x);
 }
 void third(Vector& vec) {
 	int x;
 	std::cout << "Enter the element of vector: " << std::endl;
 	std::cin >> x;
+	vec.reserve(vec.size()+1);
 	vec.push_back(x);
 }
 void fourth(Vector& vec) {
@@ -101,7 +103,6 @@ int main() {
 	/*
 	int num;
 	Vector vec;
-	vec.reserve(100'000);
 
 	do {
 		std::cout << "Menu" << std::endl;
