@@ -7,8 +7,22 @@
 using str = std::string;
 
 class Car {
+	private:
+	str car_name_ ;
+	str car_model_;
+	str body_number_ ;
+	str GOS_number_ ;
+	int mileage_;
 	public:
-	Car(str car_name = "BMW", str car_model = "X5", str body_number = "AFDDFR234", str GOS_number = "T123AA10", int mileage = 1234) : car_name_(car_name), car_model_(car_model), body_number_(body_number), GOS_number_(GOS_number), mileage_(mileage) {
+	Car(){
+		car_name_ = "Default name";
+		car_model_ = "Defaul model";
+		body_number_ = "Default body number";
+		GOS_number_ = "Defaul GOS number";
+		mileage_ = 0;
+		std::cerr << "ctor default" << std::endl;
+	};
+	Car(str car_name, str car_model, str body_number, str GOS_number, int mileage) : car_name_(car_name), car_model_(car_model), body_number_(body_number), GOS_number_(GOS_number), mileage_(mileage) {
 		std::cerr << "ctor param" << std::endl;
 	}
 	Car(const Car &p)  : car_name_(p.car_name_), car_model_(p.car_model_), body_number_(p.body_number_), GOS_number_(p.GOS_number_), mileage_(p.mileage_){
@@ -17,25 +31,19 @@ class Car {
 	~Car(){
 		std::cerr << "dtor" << std::endl;
 	}
-	void set_body_number_(){
-		str x;
-		std::cout << "Enter body number:" << std::endl;
-		std::cin >> x;
-		if(x.length() > 12 || x.length() < 9 ){
+	void set_body_number_(str number){
+		if(number.length() > 12 || number.length() < 9 ){
 			str error = "The length of body number have to be in the range from 9 to 12";
 			throw error;
 		}
-		body_number_ = x;
+		body_number_ = number;
 	}
-	void set_GOS_number_ (){
-		str x;
-		std::cout << "Enter GOS number:" << std::endl;
-		std::cin >> x;
-		if(x.length() != 10 ){
+	void set_GOS_number_ (str number){
+		if((number.length() > 9) || (number.length() < 8)){
 			str error = "The length of GOS number have to be in the range from 8 to 9";
 			throw error;
 		}
-		GOS_number_  = x;
+		GOS_number_  = number;
 	}
 	str get_car_name_() const {
 		return car_name_;
@@ -52,15 +60,12 @@ class Car {
 	int get_mileage_() const {
 		return mileage_;
 	}
-	void twisting_mileage(){
-		int x;
-		std::cout << "Enter X:" << std::endl;
-		std::cin >> x;
-		if(x < 1 ) {
-			str error = "X have to be > 0";
+	void twisting_mileage(int miles){
+		if((miles < 1 ) || (miles > mileage_)) {
+			str error = "X have to be more than 0 and less than currently mileage";
 			throw error;
 		}
-		mileage_ = mileage_ - x;
+		mileage_ = mileage_ - miles;
 	}
 	void print_info(){
 		std::cout << "=============" << std::endl;
@@ -72,18 +77,12 @@ class Car {
 		std::cout << "Milege: " << mileage_ << std::endl;
 		std::cout << "=============" << std::endl;
 	}
-	private:
-	str car_name_ ;
-	str car_model_;
-	str body_number_ ;
-	str GOS_number_ ;
-	int mileage_;
 };
-
 int main(){
 	Car car{"Land Rover", "Defender", "ABCDE123456", "A123AA456", 2090};
 	Car car1{car};
-	Car car2;
+	Car car2{};
+	car2.print_info();
 	int n;
 	do {
 		std::cout << "=============" << std::endl;
@@ -97,10 +96,11 @@ int main(){
 		std::cout << "7. Set GOS number" << std::endl;
 		std::cout << "8. Twist mileage" << std::endl;
 		std::cout << "9. Print info" << std::endl;
-
 		std::cout << "=============" << std::endl;
 		std::cout << "What you what to do?" << std::endl;
 		std::cin >> n;
+		str number;
+		int miles;
 		switch(n){
 			case 1:
 				std::cout << car.get_car_name_() << std::endl;
@@ -123,25 +123,31 @@ int main(){
 				break;
 				
 			case 6:
+				std::cout << "Enter body number:" << std::endl;
+				std::cin >> number;
 				try {
-					car.set_body_number_();
+					car.set_body_number_(number);
 				} catch(str error) {
 					std::cerr << error << std::endl;
 				}
 				break;
 
 			case 7:
+				std::cout << "Enter GOS number:" << std::endl;
+				std::cin >> number;
 				try {
-					car.set_GOS_number_();
+					car.set_GOS_number_(number);
 				} catch(str error) {
 					std::cerr << error << std::endl;
 				}
 				break;
 
 			case 8:
+				std::cout << "Enter miles:" << std::endl;
+				std::cin >> miles;
 				try {
-				car.twisting_mileage();
-				} catch ( str error){
+				car.twisting_mileage(miles);
+				} catch (str error){
 					std::cerr << error << std::endl;
 				}
 				break;
@@ -152,7 +158,6 @@ int main(){
 			default:
 				std::cout << "Invalid value" << std::endl;
 				break;
-
 		}
 	} while (n !=0);
 	return 0;
