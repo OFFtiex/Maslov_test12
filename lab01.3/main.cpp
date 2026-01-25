@@ -8,11 +8,12 @@ using str = std::string;
 
 class Car {
 	private:
-	str car_name_ ;
-	str car_model_;
 	str body_number_ ;
 	str GOS_number_ ;
 	int mileage_;
+	protected:
+	str car_name_ ;
+	str car_model_;
 	public:
 	Car(){
 		car_name_ = "Default name";
@@ -36,11 +37,39 @@ class Car {
 			str error = "The length of body number have to be in the range from 9 to 12";
 			throw error;
 		}
+		str alph = "WERTYUPASDFGHJKLZXCVBNM0123456789";
+		 for (int i = 0; i < number.length(); i++){
+			if(alph.find(number[i]) == std::string::npos){
+				str error = "Invalid symbol";
+				throw error;
+			}
+		 }
 		body_number_ = number;
 	}
 	void set_GOS_number_ (str number){
-		if((number.length() > 9) || (number.length() < 8)){
-			str error = "The length of GOS number have to be in the range from 8 to 9";
+		if(number.length() != 6){
+			str error = "The length of GOS number have to be 6";
+			throw error;
+		}
+		str letters = "QWERTYUIOPASDFGHJKLZXCVBNM";
+		str digits = "1234567890";
+		str error = "Gos number must be: A123AA";
+		if (letters.find(number[0]) == std::string::npos){
+			throw error;
+		}
+		if (digits.find(number[1]) == std::string::npos){
+			throw error;
+		}
+		if (digits.find(number[2]) == std::string::npos){
+			throw error;
+		}
+		if (digits.find(number[3]) == std::string::npos){
+			throw error;
+		}
+		if (letters.find(number[4]) == std::string::npos){
+			throw error;
+		}
+		if (letters.find(number[5]) == std::string::npos){
 			throw error;
 		}
 		GOS_number_  = number;
@@ -79,7 +108,7 @@ class Car {
 	}
 };
 int main(){
-	Car car{"Land Rover", "Defender", "ABCDE123456", "A123AA456", 2090};
+	Car car{"Land Rover", "Defender", "ABCDE123456", "A123BC", 2090};
 	Car car1{car};
 	Car car2{};
 	car2.print_info();
