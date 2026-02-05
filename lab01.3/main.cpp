@@ -7,15 +7,15 @@
 using str = std::string;
 
 class Car {
-	private:
-	str body_number_ ;
-	str GOS_number_ ;
+private:
+	str body_number_;
+	str GOS_number_;
 	int mileage_;
-	protected:
-	str car_name_ ;
+protected:
+	str car_name_;
 	str car_model_;
-	public:
-	Car(){
+public:
+	Car() {
 		car_name_ = "Default name";
 		car_model_ = "Defaul model";
 		body_number_ = "Default body number";
@@ -26,53 +26,80 @@ class Car {
 	Car(str car_name, str car_model, str body_number, str GOS_number, int mileage) : car_name_(car_name), car_model_(car_model), body_number_(body_number), GOS_number_(GOS_number), mileage_(mileage) {
 		std::cerr << "ctor param" << std::endl;
 	}
-	Car(const Car &p)  : car_name_(p.car_name_), car_model_(p.car_model_), body_number_(p.body_number_), GOS_number_(p.GOS_number_), mileage_(p.mileage_){
-		std::cerr << "ctor copy" << std::endl;	
+	Car(const Car& p) : car_name_(p.car_name_), car_model_(p.car_model_), body_number_(p.body_number_), GOS_number_(p.GOS_number_), mileage_(p.mileage_) {
+		std::cerr << "ctor copy" << std::endl;
 	}
-	~Car(){
+	~Car() {
 		std::cerr << "dtor" << std::endl;
 	}
-	void set_body_number_(str number){
-		if(number.length() > 12 || number.length() < 9 ){
+	void set_body_number_(str number) {
+		if (number.length() > 12 || number.length() < 9) {
 			str error = "The length of body number have to be in the range from 9 to 12";
 			throw error;
 		}
 		str alph = "WERTYUPASDFGHJKLZXCVBNM0123456789";
-		 for (int i = 0; i < number.length(); i++){
-			if(alph.find(number[i]) == std::string::npos){
+		for (int i = 0; i < number.length(); i++) {
+			if (alph.find(number[i]) == std::string::npos) {
 				str error = "Invalid symbol";
 				throw error;
 			}
-		 }
+		}
 		body_number_ = number;
 	}
-	void set_GOS_number_ (str number){
-		if(number.length() != 6){
+	void set_GOS_number_(str number) {
+		if (number.length() != 6) {
 			str error = "The length of GOS number have to be 6";
 			throw error;
 		}
 		str letters = "QWERTYUIOPASDFGHJKLZXCVBNM";
 		str digits = "1234567890";
 		str error = "Gos number must be: A123AA";
-		if (letters.find(number[0]) == std::string::npos){
+		if (letters.find(number[0]) == std::string::npos) {
 			throw error;
 		}
-		if (digits.find(number[1]) == std::string::npos){
+		if (digits.find(number[1]) == std::string::npos) {
 			throw error;
 		}
-		if (digits.find(number[2]) == std::string::npos){
+		if (digits.find(number[2]) == std::string::npos) {
 			throw error;
 		}
-		if (digits.find(number[3]) == std::string::npos){
+		if (digits.find(number[3]) == std::string::npos) {
 			throw error;
 		}
-		if (letters.find(number[4]) == std::string::npos){
+		if (letters.find(number[4]) == std::string::npos) {
 			throw error;
 		}
-		if (letters.find(number[5]) == std::string::npos){
+		if (letters.find(number[5]) == std::string::npos) {
 			throw error;
 		}
-		GOS_number_  = number;
+		GOS_number_ = number;
+	}
+	void set_car_name(str number) {
+		str alph = "WERTYUPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
+		for (int i = 0; i < number.length(); i++) {
+			if (alph.find(number[i]) == std::string::npos) {
+				str error = "Invalid symbol";
+				throw error;
+			}
+		}
+		car_name_ = number;
+	}
+	void set_car_model(str number) {
+		str alph = "WERTYUPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890";
+		for (int i = 0; i < number.length(); i++) {
+			if (alph.find(number[i]) == std::string::npos) {
+				str error = "Invalid symbol";
+				throw error;
+			}
+		}
+		car_model_ = number;
+	}
+	void set_miles(int miles) {
+		if (miles < 0){
+			str error = "X have to be more than 0";
+			throw error;
+		}
+		mileage_ = miles;
 	}
 	str get_car_name_() const {
 		return car_name_;
@@ -89,28 +116,29 @@ class Car {
 	int get_mileage_() const {
 		return mileage_;
 	}
-	void twisting_mileage(int miles){
-		if((miles < 1 ) || (miles > mileage_)) {
+	void twisting_mileage(int miles) {
+		if ((miles < 1) || (miles > mileage_)) {
 			str error = "X have to be more than 0 and less than currently mileage";
 			throw error;
 		}
 		mileage_ = mileage_ - miles;
 	}
-	void print_info(){
+	void print_info() {
 		std::cout << "=============" << std::endl;
 		std::cout << "Car info" << std::endl;
 		std::cout << "Car name: " << car_name_ << std::endl;
 		std::cout << "Car model: " << car_model_ << std::endl;
 		std::cout << "Body number: " << body_number_ << std::endl;
 		std::cout << "GOS number: " << GOS_number_ << std::endl;
-		std::cout << "Milege: " << mileage_ << std::endl;
+		std::cout << "Mileage: " << mileage_ << std::endl;
 		std::cout << "=============" << std::endl;
 	}
 };
-int main(){
-	Car car{"Land Rover", "Defender", "ABCDE123456", "A123BC", 2090};
-	Car car1{car};
+int main() {
+	Car car{ "Land Rover", "Defender", "ABCDE123456", "A123BC", 2090 };
+	Car car1{ car };
 	Car car2{};
+	std::cout << "Default" << std::endl;
 	car2.print_info();
 	int n;
 	do {
@@ -125,70 +153,104 @@ int main(){
 		std::cout << "7. Set GOS number" << std::endl;
 		std::cout << "8. Twist mileage" << std::endl;
 		std::cout << "9. Print info" << std::endl;
+		std::cout << "10. Set car name" << std::endl;
+		std::cout << "11. Set car model" << std::endl;
+		std::cout << "12. Set mileage" << std::endl;
 		std::cout << "=============" << std::endl;
 		std::cout << "What you what to do?" << std::endl;
 		std::cin >> n;
 		str number;
 		int miles;
-		switch(n){
-			case 1:
-				std::cout << car.get_car_name_() << std::endl;
-				break;
+		switch (n) {
+		case 1:
+			std::cout << car.get_car_name_() << std::endl;
+			break;
 
-			case 2:
-				std::cout << car.get_car_model_() << std::endl;
-				break;
+		case 2:
+			std::cout << car.get_car_model_() << std::endl;
+			break;
 
-			case 3:
-				std::cout << car.get_body_number_() << std::endl;
-				break;
+		case 3:
+			std::cout << car.get_body_number_() << std::endl;
+			break;
 
-			case 4:
-				std::cout << car.get_GOS_number_() << std::endl;
-				break;
+		case 4:
+			std::cout << car.get_GOS_number_() << std::endl;
+			break;
 
-			case 5:
-				std::cout << car.get_mileage_() << std::endl;
-				break;
-				
-			case 6:
-				std::cout << "Enter body number:" << std::endl;
-				std::cin >> number;
-				try {
-					car.set_body_number_(number);
-				} catch(str error) {
-					std::cerr << error << std::endl;
-				}
-				break;
+		case 5:
+			std::cout << car.get_mileage_() << std::endl;
+			break;
 
-			case 7:
-				std::cout << "Enter GOS number:" << std::endl;
-				std::cin >> number;
-				try {
-					car.set_GOS_number_(number);
-				} catch(str error) {
-					std::cerr << error << std::endl;
-				}
-				break;
+		case 6:
+			std::cout << "Enter body number:" << std::endl;
+			std::cin >> number;
+			try {
+				car.set_body_number_(number);
+			}
+			catch (str error) {
+				std::cerr << error << std::endl;
+			}
+			break;
 
-			case 8:
-				std::cout << "Enter miles:" << std::endl;
-				std::cin >> miles;
-				try {
+		case 7:
+			std::cout << "Enter GOS number:" << std::endl;
+			std::cin >> number;
+			try {
+				car.set_GOS_number_(number);
+			}
+			catch (str error) {
+				std::cerr << error << std::endl;
+			}
+			break;
+
+		case 8:
+			std::cout << "Enter miles:" << std::endl;
+			std::cin >> miles;
+			try {
 				car.twisting_mileage(miles);
-				} catch (str error){
-					std::cerr << error << std::endl;
-				}
-				break;
-			case 9:
-				car.print_info();
-				break;
-				
-			default:
-				std::cout << "Invalid value" << std::endl;
-				break;
+			}
+			catch (str error) {
+				std::cerr << error << std::endl;
+			}
+			break;
+		case 9:
+			car.print_info();
+			break;
+		case 10:
+			std::cout << "Enter car name:" << std::endl;
+			std::cin >> number;
+			try {
+				car.set_car_name(number);
+			}
+			catch (str error) {
+				std::cerr << error << std::endl;
+			}
+			break;
+		case 11:
+			std::cout << "Enter car model:" << std::endl;
+			std::cin >> number;
+			try {
+				car.set_car_model(number);
+			}
+			catch (str error) {
+				std::cerr << error << std::endl;
+			}
+			break;
+		case 12:
+			std::cout << "Enter miles:" << std::endl;
+			std::cin >> miles;
+			try {
+				car.set_miles(miles);
+			}
+			catch (str error) {
+				std::cerr << error << std::endl;
+			}
+			break;
+		default:
+			std::cout << "Invalid value" << std::endl;
+			break;
 		}
-	} while (n !=0);
+	} while (n != 0);
 	return 0;
 }
-
