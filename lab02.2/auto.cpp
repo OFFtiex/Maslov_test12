@@ -31,7 +31,9 @@ Car& Car::operator=(const Car& other){
 		car_name_ = other.car_name_;
 		car_model_ = other.car_model_;
 		GOS_number_ = other.GOS_number_;
-		baggage_ = other.baggage_;
+		vec tmp = other.baggage_;
+		baggage_ = tmp;
+		tmp.clear();
 		std::cout << "The operator= is called" << std::endl;
 	}
 	return *this;

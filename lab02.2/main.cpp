@@ -23,7 +23,9 @@ int main() {
 	do {
 		std::cout << "=============" << std::endl;
 		std::cout << "Menu:" << std::endl;
+		std::cout << "0. Exit" << std::endl;
 		std::cout << "1. Get car name" << std::endl;
+		std::cout << "2. Get car model" << std::endl;
 		std::cout << "2. Get car model" << std::endl;
 		std::cout << "4. Get GOS number" << std::endl;
 		std::cout << "7. Set GOS number" << std::endl;
@@ -38,6 +40,8 @@ int main() {
 		std::cin >> n;
 		str number;
 		switch (n) {
+		case 0:
+			break;
 		case 1:
 			std::cout << car.get_car_name_() << std::endl;
 			break;
