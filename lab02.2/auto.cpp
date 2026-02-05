@@ -4,7 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include <iterator>
-#include "auto.hpp"
+
 
 using str = std::string;
 using vec = std::vector<str>;
