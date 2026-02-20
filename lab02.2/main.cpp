@@ -12,9 +12,9 @@ using vec = std::vector<str>;
 
 int main() {
 	srand(time(0));
-	vec baggage1 = {"Bottle", "Cake", "Laptop"};
+	vec baggage1 = {"Bottle", "Cake", "Laptop","Jacket"};
 	Car car{"Range Rover", "Defender", "A123BC", baggage1};
-	vec baggage2 = {"Jacke", "Cake", "Headphones", "Cake"};
+	vec baggage2 = {"Jacket", "Cake", "Headphones", "Cake"};
 	Car car1{"BMW", "X6", "M345VF", baggage2};
 	Car car_result_plus = car + car1;
 	Car car_result_minus = car - car1;

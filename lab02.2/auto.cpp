@@ -58,28 +58,41 @@ Car Car::operator+(const Car& other) const{
 	else{
 		result.car_model_ = other.car_model_;
 	}
+	
 	const size_t Start_Digits= 48;
 	const size_t End_Digits = 57; 
 	const size_t Start_Letters = 65;
 	const size_t End_Letters = 90;
+	str tmp_gos_number;
 	str new_gos_number;
-	new_gos_number += static_cast<char>(rand()%(End_Letters - Start_Letters +1) + Start_Letters);
-	new_gos_number += static_cast<char>(rand()%(End_Digits - Start_Digits +1) + Start_Digits);
-	new_gos_number += static_cast<char>(rand()%(End_Digits - Start_Digits +1) + Start_Digits);
-	new_gos_number += static_cast<char>(rand()%(End_Digits - Start_Digits +1) + Start_Digits);
-	new_gos_number += static_cast<char>(rand()%(End_Letters - Start_Letters +1) + Start_Letters);
-	new_gos_number += static_cast<char>(rand()%(End_Letters - Start_Letters +1) + Start_Letters);
+	do {
+	tmp_gos_number += static_cast<char>(rand()%(End_Letters - Start_Letters +1) + Start_Letters);
+	tmp_gos_number += static_cast<char>(rand()%(End_Digits - Start_Digits +1) + Start_Digits);
+	tmp_gos_number += static_cast<char>(rand()%(End_Digits - Start_Digits +1) + Start_Digits);
+	tmp_gos_number += static_cast<char>(rand()%(End_Digits - Start_Digits +1) + Start_Digits);
+	tmp_gos_number += static_cast<char>(rand()%(End_Letters - Start_Letters +1) + Start_Letters);
+	tmp_gos_number += static_cast<char>(rand()%(End_Letters - Start_Letters +1) + Start_Letters);
+	new_gos_number = tmp_gos_number;
+	tmp_gos_number = "";
+	} while ((this->GOS_number_ == new_gos_number) || (other.GOS_number_ == new_gos_number));
 	result.GOS_number_ = new_gos_number;
+
 	if ((this->baggage_.size() != 0) || (other.baggage_.size() != 0)){
 		result.baggage_ = this->baggage_;
 		result.baggage_.reserve(this->baggage_.size() + other.baggage_.size());
 		result.baggage_.insert(result.baggage_.end(), other.baggage_.begin(), other.baggage_.end());
+		result.baggage_.push_back("Empty cell");
 		for(int i = 0; i < result.baggage_.size()-1; i++){
-			for(int j = 1;j < result.baggage_.size();j++ ){
+			for(int j = 1 + i;j < result.baggage_.size();j++ ){
 				if(result.baggage_[i] == result.baggage_[j])
 					std::swap(result.baggage_[j],result.baggage_[i+1]);
 			}
 		}
+		for(int i = 0; i < result.baggage_.size(); i++){
+			if (result.baggage_[i] == "Empty cell"){
+				result.baggage_.erase(result.baggage_.begin() + i);
+			}
+		} 
 	}
 	else {
 		result.baggage_ = {"Empty"};
@@ -102,33 +115,52 @@ Car Car::operator-(const Car& other) const{
 	else{
 		result.car_model_ = other.car_model_;
 	}
+
 	const size_t Start_Digits= 48;
-	const size_t End_Digits = 57;
+	const size_t End_Digits = 57; 
 	const size_t Start_Letters = 65;
 	const size_t End_Letters = 90;
+	str tmp_gos_number;
 	str new_gos_number;
-	new_gos_number += static_cast<char>(rand()%(End_Letters - Start_Letters +1) + Start_Letters);
-	new_gos_number += static_cast<char>(rand()%(End_Digits - Start_Digits +1) + Start_Digits);
-	new_gos_number += static_cast<char>(rand()%(End_Digits - Start_Digits +1) + Start_Digits);
-	new_gos_number += static_cast<char>(rand()%(End_Digits - Start_Digits +1) + Start_Digits);
-	new_gos_number += static_cast<char>(rand()%(End_Letters - Start_Letters +1) + Start_Letters);
-	new_gos_number += static_cast<char>(rand()%(End_Letters - Start_Letters +1) + Start_Letters);
+	do {
+	tmp_gos_number += static_cast<char>(rand()%(End_Letters - Start_Letters +1) + Start_Letters);
+	tmp_gos_number += static_cast<char>(rand()%(End_Digits - Start_Digits +1) + Start_Digits);
+	tmp_gos_number += static_cast<char>(rand()%(End_Digits - Start_Digits +1) + Start_Digits);
+	tmp_gos_number += static_cast<char>(rand()%(End_Digits - Start_Digits +1) + Start_Digits);
+	tmp_gos_number += static_cast<char>(rand()%(End_Letters - Start_Letters +1) + Start_Letters);
+	tmp_gos_number += static_cast<char>(rand()%(End_Letters - Start_Letters +1) + Start_Letters);
+	new_gos_number = tmp_gos_number;
+	tmp_gos_number = "";
+	} while ((this->GOS_number_ == new_gos_number) || (other.GOS_number_ == new_gos_number));
 	result.GOS_number_ = new_gos_number;
+
+	result.baggage_.clear();
 	if ((this->baggage_.size() == 0) && (other.baggage_.size() == 0)){
 		result.baggage_ = {"Empty"};
 	}
 	else {
-		result.baggage_ = this->baggage_;
-		result.baggage_.reserve(this->baggage_.size() + other.baggage_.size());
-		result.baggage_.insert(result.baggage_.end(), other.baggage_.begin(), other.baggage_.end());
-		for(int i = 0; i < result.baggage_.size()-1; i++){
-			for(int j = 1;j < result.baggage_.size();j++ ){
-				if(result.baggage_[i] == result.baggage_[j])
-					std::swap(result.baggage_[j],result.baggage_[i+1]);
+		int cnt = 0;
+		for (int i = 0; i < this->baggage_.size(); i++){
+			for(int j = 0; j < other.baggage_.size(); j++){
+				if (this->baggage_[i] == other.baggage_[j])
+					cnt+=1;
 			}
+			if (cnt == 0){
+				result.baggage_.push_back(this->baggage_[i]);
+			}
+			cnt = 0;
 		}
-		auto last = std::unique(result.baggage_.begin(), result.baggage_.end());
-		result.baggage_.erase(last,result.baggage_.end());
+		for (int i = 0; i < other.baggage_.size(); i++){
+			for(int j = 0; j < this->baggage_.size(); j++){
+				if (other.baggage_[i] == this->baggage_[j])
+					cnt+=1;
+			}
+			if (cnt == 0){
+				result.baggage_.push_back(other.baggage_[i]);
+			}
+			cnt = 0;
+		}
+
 	}
 	return result;
 }
@@ -148,28 +180,38 @@ Car Car::operator/(const Car& other) const{
 	else{
 		result.car_model_ = other.car_model_;
 	}
+
 	const size_t Start_Digits= 48;
 	const size_t End_Digits = 57; 
 	const size_t Start_Letters = 65;
 	const size_t End_Letters = 90;
+	str tmp_gos_number;
 	str new_gos_number;
-	new_gos_number += static_cast<char>(rand()%(End_Letters - Start_Letters +1) + Start_Letters);
-	new_gos_number += static_cast<char>(rand()%(End_Digits - Start_Digits +1) + Start_Digits);
-	new_gos_number += static_cast<char>(rand()%(End_Digits - Start_Digits +1) + Start_Digits);
-	new_gos_number += static_cast<char>(rand()%(End_Digits - Start_Digits +1) + Start_Digits);
-	new_gos_number += static_cast<char>(rand()%(End_Letters - Start_Letters +1) + Start_Letters);
-	new_gos_number += static_cast<char>(rand()%(End_Letters - Start_Letters +1) + Start_Letters);
+	do {
+	tmp_gos_number += static_cast<char>(rand()%(End_Letters - Start_Letters +1) + Start_Letters);
+	tmp_gos_number += static_cast<char>(rand()%(End_Digits - Start_Digits +1) + Start_Digits);
+	tmp_gos_number += static_cast<char>(rand()%(End_Digits - Start_Digits +1) + Start_Digits);
+	tmp_gos_number += static_cast<char>(rand()%(End_Digits - Start_Digits +1) + Start_Digits);
+	tmp_gos_number += static_cast<char>(rand()%(End_Letters - Start_Letters +1) + Start_Letters);
+	tmp_gos_number += static_cast<char>(rand()%(End_Letters - Start_Letters +1) + Start_Letters);
+	new_gos_number = tmp_gos_number;
+	tmp_gos_number = "";
+	} while ((this->GOS_number_ == new_gos_number) || (other.GOS_number_ == new_gos_number));
 	result.GOS_number_ = new_gos_number;
+
+	result.baggage_.clear();
 	if ((this->baggage_.size() == 0) && (other.baggage_.size() == 0)){
 		result.baggage_ = {"Empty"};
 	}
 	else {
-		vec sorted_this = this->baggage_;
-		vec sorted_other = other.baggage_;
-		std::sort(sorted_this.begin(), sorted_this.end());
-		std::sort(sorted_other.begin(), sorted_other.end());
-		result.baggage_.clear();
-		std::set_intersection(sorted_this.begin(), sorted_this.end(), sorted_other.begin(), sorted_other.end(), std::back_inserter(result.baggage_));
+		for (int i = 0; i < this->baggage_.size(); i++){
+			for(int j = 0; j < other.baggage_.size(); j++){
+				if (this->baggage_[i] == other.baggage_[j]){
+					result.baggage_.push_back(this->baggage_[i]);
+					break;
+				}
+			}
+		}
 	}
 	return result;
 	}
