@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include <iterator>
+#include "inc/my_lib.hpp"
 
 
 using str = std::string;
@@ -243,6 +244,9 @@ void Car::set_GOS_number_(str number) {
 	}
 	GOS_number_ = number;
 }
+void Car::set_radio(Radio& r){
+	installed_radio = r.name;
+}
 void Car::set_car_name(str number) {
 	str alph = "WERTYUPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
 	for (int i = 0; i < number.length(); i++) {
@@ -276,6 +280,7 @@ void Car::print_info() {
 	std::cout << "=============" << std::endl;
 	std::cout << "Car info" << std::endl;
 	std::cout << "Car name: " << car_name_ << std::endl;
+	std::cout << "Installed radio: " << installed_radio << std::endl;
 	std::cout << "Car model: " << car_model_ << std::endl;
 	std::cout << "GOS number: " << GOS_number_ << std::endl;
 	std::cout << "Baggage: ";

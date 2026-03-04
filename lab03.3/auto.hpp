@@ -1,14 +1,19 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <iostream> 
+
 
 using str = std::string;
 using vec = std::vector<str>;
+struct Radio;
+
 
 class Car {
 protected:
 	str car_model_;
 	str car_name_;
+	str installed_radio;
 private:
 	str GOS_number_;
 	vec baggage_;
@@ -23,6 +28,7 @@ public:
 	Car operator-(const Car& other) const;
 	Car operator/(const Car& other) const;
 	void set_GOS_number_(str number);
+	void set_radio(Radio& r);
 	void set_car_name(str number);
 	void set_car_model(str number);
 	str get_car_name_() const;
