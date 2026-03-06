@@ -9,12 +9,13 @@
 
 using str = std::string;
 using vec = std::vector<str>;
+class Car;
 using vec_pointer = std::vector<Car*>;
 struct Radio {
 	str name;
 	str info;
 	int cost;
-	bool operator==(const Radio& other) const;
+	bool operator==(const Radio* other) const;
     void print_radio();
 	};
 class Garage{
@@ -25,7 +26,7 @@ public:
 	~Garage();
 
 	void attach_auto(Car& auto1);
-	void set_radio_in_car(Radio& radio, Car& car1);
+	void set_radio_in_car(Radio* radio, Car& car1);
 	void print_info_garage();
     void print_avaible_radios();
     void print_autos_in_garage();

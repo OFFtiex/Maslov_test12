@@ -12,8 +12,8 @@ using str = std::string;
 using vec = std::vector<str>;
 using vec_pointer = std::vector<Car*>;
 
-	bool Radio::operator==(const Radio& other) const {
-        return (name == other.name) && (info == other.info) && (cost == other.cost);
+	bool Radio::operator==(const Radio* other) const {
+        return (name == other->name) && (info == other->info) && (cost == other->cost);
     } 
 
     void Radio::print_radio(){
@@ -47,7 +47,7 @@ using vec_pointer = std::vector<Car*>;
 			std::cout << "Car is not exist" << std::endl;
 		}
 	}
-	void Garage::set_radio_in_car(Radio& radio, Car& car1){
+	void Garage::set_radio_in_car(Radio* radio, Car& car1){
 		auto is_radio = std::find(avaible_radio_.begin(), avaible_radio_.end(), radio);
 		auto is_car = std::find(auto_in_garage_.begin(), auto_in_garage_.end(), &car1);
 		if ((is_radio != avaible_radio_.end()) && 

@@ -165,26 +165,26 @@ int main() {
 			std::cin >> car;
 			if (radio == 1){
 				if (car == 1){
-					main_garage.set_radio_in_car(radio1, car1);
+					main_garage.set_radio_in_car(&radio1, car1);
 				}
 				else if (car == 2){
-					main_garage.set_radio_in_car(radio1, car2);
+					main_garage.set_radio_in_car(&radio1, car2);
 				}
 			}
 			if (radio == 2){
 				if (car == 1){
-					main_garage.set_radio_in_car(radio2, car1);
+					main_garage.set_radio_in_car(&radio2, car1);
 				}
 				else if (car == 2){
-					main_garage.set_radio_in_car(radio2, car2);
+					main_garage.set_radio_in_car(&radio2, car2);
 				}
 			}
 			if (radio == 3){
 				if (car == 1){
-					main_garage.set_radio_in_car(radio3, car1);
+					main_garage.set_radio_in_car(&radio3, car1);
 				}
 				else if (car == 2){
-					main_garage.set_radio_in_car(radio3, car2);
+					main_garage.set_radio_in_car(&radio3, car2);
 				}
 			}
 			break;
