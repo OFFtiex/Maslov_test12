@@ -82,7 +82,7 @@ int main(){
         // for (int i = 0; i <TEXT_SIZE; i++ ){
         //     std::cout << arr_text[i] << std::endl;
         // }
-
+        file.close();
         char first_letter = param_arr[1][0];
         char second_letter = param_arr[2][0];
         const int RESULT_SIZE = 1000;   
@@ -168,7 +168,14 @@ int main(){
         for(int i = 0; i < count_n; i++){
             std::cout << the_final_arr[i] << std::endl;
         }
-        file.close();
+        std::ofstream result("../result.txt");
+        if (result.is_open()){
+            for (int i = 0; i < count_n; i++){
+                result << the_final_arr[i] << " ";
+            }
+            result.close();
+            std::cout << std::endl;
+        }
         return 0;
     }
 }
