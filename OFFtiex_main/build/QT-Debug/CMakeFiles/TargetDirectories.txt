@@ -1,0 +1,8 @@
+C:/Users/geram/Documents/OFFtiex_main/build/QT-Debug/CMakeFiles/OFFtiex_main.dir
+C:/Users/geram/Documents/OFFtiex_main/build/QT-Debug/CMakeFiles/edit_cache.dir
+C:/Users/geram/Documents/OFFtiex_main/build/QT-Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/geram/Documents/OFFtiex_main/build/QT-Debug/CMakeFiles/list_install_components.dir
+C:/Users/geram/Documents/OFFtiex_main/build/QT-Debug/CMakeFiles/install.dir
+C:/Users/geram/Documents/OFFtiex_main/build/QT-Debug/CMakeFiles/install/local.dir
+C:/Users/geram/Documents/OFFtiex_main/build/QT-Debug/CMakeFiles/OFFtiex_main_autogen_timestamp_deps.dir
+C:/Users/geram/Documents/OFFtiex_main/build/QT-Debug/CMakeFiles/OFFtiex_main_autogen.dir
